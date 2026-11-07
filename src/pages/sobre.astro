@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Sobre | Ruminante Esquecido"
+  description="Quem escreve este blog e como ele foi construído."
+>
+  <article>
+    <h1>Sobre</h1>
+    <p>
+      Escrevo por aqui sobre software, simplicidade e o que mais aparecer. Este
+      blog é también um experimento: ele roda sem JavaScript no navegador, com
+      páginas geradas como HTML estático no build.
+    </p>
+    <h2>Como foi construído</h2>
+    <ul>
+      <li><a href="https://astro.build">Astro</a> para gerar o site estático</li>
+      <li>Markdown com <em>Content Collections</em> para organizar os posts</li>
+      <li>CSS puro, sem frameworks nem dependências de interface</li>
+      <li>Hospedado na <a href="https://vercel.com">Vercel</a></li>
+    </ul>
+    <h2>Escrevendo um novo post</h2>
+    <p>
+      Basta criar um arquivo <code>.md</code> em <code>src/content/blog/</code>
+      com o frontmatter <code>title</code>, <code>description</code> e
+      <code>pubDate</code>. O Astro cuida do resto no próximo build.
+    </p>
+  </article>
+</BaseLayout>
