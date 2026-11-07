@@ -1,0 +1,5 @@
+opencode
+
+git add .\src\content\blog\*nome_arquivo
+
+./commit-autor.sh
