@@ -1,4 +1,4 @@
-opencode
+opencode (Qualquer coisa pergunte ao chat gpt)
 
 git add .\src\content\blog\*nome_arquivo
 
