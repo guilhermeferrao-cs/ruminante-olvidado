@@ -6,10 +6,12 @@
 #   1. git add <arquivos>
 #   2. ./commit-autor.sh            (ou bash commit-autor.sh)
 #
-# O script lê o "git diff --cached", descobre para cada arquivo se é
-# novo (A), revisado (M) ou deletado (D), monta a mensagem no formato
-# "novo: nome_do_artigo", "revisado: nome_do_artigo",
+# O script lê o "git diff --cached", e para cada artigo .md em stage
+# descobre se é novo (A), revisado (M) ou deletado (D), monta a mensagem
+# no formato "novo: nome_do_artigo", "revisado: nome_do_artigo",
 # "deletado: nome_do_artigo" e faz o push.
+# Outros arquivos em stage (código, imagens etc.) são ignorados pelo
+# script e permanecem em stage.
 #
 # Opções:
 #   -n, --no-push   só faz o commit, não faz o push
@@ -50,6 +52,14 @@ while IFS= read -r -d '' campo; do
     continue
   fi
   path="$campo"                    # caminho do arquivo
+
+  # só artigos .md (ignora outro que esteja em stage; ele fica em stage,
+  # para commitar use git commit manualmente)
+  if [[ "${path,,}" != *.md ]]; then
+    printf '  %-8s %-30s [ignorado: não é .md]\n' "($status)" "$path"
+    status=""
+    continue
+  fi
 
   # nome do artigo: nome do arquivo, sem extensão
   nome="$(basename "$path")"
